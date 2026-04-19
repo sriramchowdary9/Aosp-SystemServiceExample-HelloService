@@ -1,0 +1,29 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+java_binary {
+    name: "hello_service_server",
+    srcs: ["src/com/example/hello/HelloServiceMain.java"],
+
+    static_libs: [
+        "com.example.hello-java",
+    ],
+
+    libs: [
+        "framework",
+        "android.car",
+    ],
+
+    main_class: "com.example.hello.HelloServiceMain",
+
+    platform_apis: true,
+    installable: true,
+
+    // rc file must be in the same directory as this Android.bp
+    init_rc: ["hello_service.rc"],
+
+    dex_preopt: {
+        enabled: false,
+    },
+}

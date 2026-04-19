@@ -1,0 +1,22 @@
+// client/Android.bp — Builds the CLI client binary
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+java_binary {
+    name: "hello_client",
+    srcs: ["src/**/*.java"],
+
+    static_libs: [
+        "com.example.hello-java",
+    ],
+    
+    main_class: "com.example.hello.HelloClient", // <-- Add this line
+
+    libs: [
+        "framework",
+    ],
+
+    platform_apis: true,
+}

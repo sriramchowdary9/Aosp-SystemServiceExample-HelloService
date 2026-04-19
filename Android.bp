@@ -1,0 +1,42 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+aidl_interface {
+    name: "com.example.hello",
+    local_include_dir: "aidl",
+    srcs: [
+        "aidl/com/example/hello/IHelloService.aidl",
+    ],
+    unstable: true,
+    backend: {
+        java: {
+            enabled: true,
+            platform_apis: true,
+        },
+        cpp: {
+            enabled: false,
+        },
+        ndk: {
+            enabled: false,
+        },
+    },
+}
+
+se_policy_conf {
+    name: "hello_service_sepolicy",
+    srcs: ["sepolicy/hello_service.te"],
+    installable: false,
+}
+
+file_contexts {
+    name: "hello_service_file_contexts",
+    srcs: ["sepolicy/file_contexts"],
+    product_specific: true,
+}
+
+service_contexts {
+    name: "hello_service_service_contexts",
+    srcs: ["sepolicy/service_contexts"],
+    product_specific: true,
+}

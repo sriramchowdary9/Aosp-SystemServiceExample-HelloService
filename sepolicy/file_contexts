@@ -1,0 +1,2 @@
+/system/bin/hello_service_server          u:object_r:hello_service_exec:s0
+

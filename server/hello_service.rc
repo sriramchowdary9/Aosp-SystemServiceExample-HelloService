@@ -1,0 +1,11 @@
+# hello_service.rc — init script
+# Tells Android's init process to start our service on boot
+
+service hello_service /system/bin/hello_service_server
+    class main
+    user system
+    group system
+
+# Start after boot completed to avoid early-start race conditions
+on property:sys.boot_completed=1
+    start hello_service

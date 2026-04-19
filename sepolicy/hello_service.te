@@ -1,0 +1,21 @@
+# Type definition for our service
+type hello_service_exec, system_file_type, exec_type, file_type;
+type hello_service, domain;
+type hello_service_service, service_manager_type;
+
+# Allow init to start our service
+init_daemon_domain(hello_service)
+
+# Allow the service to register with ServiceManager
+allow hello_service hello_service_service:service_manager add;
+
+# Allow the service to use Binder
+binder_use(hello_service)
+binder_call(hello_service, system_server)
+
+# Allow car service access
+binder_call(hello_service, car_service)
+allow hello_service car_service:service_manager find;
+
+# Allow logging
+allow hello_service log_device:chr_file { open write };
